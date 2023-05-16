@@ -1,0 +1,209 @@
+// Função swap
+const swap = (array, pos1, pos2) => {
+    [array[pos1], array[pos2]] = [array[pos2], array[pos1]];
+  };
+  
+  // Função shuffle
+  const shuffle = (array, numSwaps) => {
+    for (let i = 0; i < numSwaps; i++) {
+      const pos1 = Math.floor(Math.random() * array.length);
+      const pos2 = Math.floor(Math.random() * array.length);
+      swap(array, pos1, pos2);
+    }
+  };
+  
+  // Função bubble_sort
+  const bubble_sort = (array) => {
+    const len = array.length;
+    let swapped;
+    do {
+      swapped = false;
+      for (let i = 0; i < len - 1; i++) {
+        if (array[i] > array[i + 1]) {
+          swap(array, i, i + 1);
+          swapped = true;
+        }
+      }
+    } while (swapped);
+  };
+  
+  // Função selection_sort
+  const selection_sort = (array) => {
+    const len = array.length;
+    for (let i = 0; i < len - 1; i++) {
+      let minIndex = i;
+      for (let j = i + 1; j < len; j++) {
+        if (array[j] < array[minIndex]) {
+          minIndex = j;
+        }
+      }
+      if (minIndex !== i) {
+        swap(array, i, minIndex);
+      }
+    }
+  };
+  
+  // Função quick_sort
+  const quick_sort = (array, start = 0, end = array.length - 1) => {
+    if (start < end) {
+      const pivotIndex = partition(array, start, end);
+      quick_sort(array, start, pivotIndex - 1);
+      quick_sort(array, pivotIndex + 1, end);
+    }
+  };
+  
+  // Função partition (de apoio a quick_sort)
+  const partition = (array, start, end) => {
+    const pivot = array[end];
+    let pivotIndex = start;
+    for (let i = start; i < end; i++) {
+      if (array[i] <= pivot) {
+        swap(array, i, pivotIndex);
+        pivotIndex++;
+      }
+    }
+    swap(array, pivotIndex, end);
+    return pivotIndex;
+  };
+  
+  
+  <!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Ordenando</title>
+  <script src="ordenando.js"></script>
+</head>
+<body
+
+// Função swap
+const swap = (array, pos1, pos2) => {
+    [array[pos1], array[pos2]] = [array[pos2], array[pos1]];
+  };
+  
+  // Função shuffle
+  const shuffle = (array, numSwaps) => {
+    for (let i = 0; i < numSwaps; i++) {
+      const pos1 = Math.floor(Math.random() * array.length);
+      const pos2 = Math.floor(Math.random() * array.length);
+      swap(array, pos1, pos2);
+    }
+  };
+  
+  // Função bubble_sort
+  const bubble_sort = (array) => {
+    const len = array.length;
+    let swapped;
+    do {
+      swapped = false;
+      for (let i = 0; i < len - 1; i++) {
+        if (array[i] > array[i + 1]) {
+          swap(array, i, i + 1);
+          swapped = true;
+        }
+      }
+    } while (swapped);
+  };
+  
+  // Função selection_sort
+  const selection_sort = (array) => {
+    const len = array.length;
+    for (let i = 0; i < len - 1; i++) {
+      let minIndex = i;
+      for (let j = i + 1; j < len; j++) {
+        if (array[j] < array[minIndex]) {
+          minIndex = j;
+        }
+      }
+      if (minIndex !== i) {
+        swap(array, i, minIndex);
+      }
+    }
+  };
+  
+  // Função quick_sort
+  const quick_sort = (array, start = 0, end = array.length - 1) => {
+    if (start < end) {
+      const pivotIndex = partition(array, start, end);
+      quick_sort(array, start, pivotIndex - 1);
+      quick_sort(array, pivotIndex + 1, end);
+    }
+  };
+  
+  // Função partition (de apoio a quick_sort)
+  const partition = (array, start, end) => {
+    const pivot = array[end];
+    let pivotIndex = start;
+    for (let i = start; i < end; i++) {
+      if (array[i] <= pivot) {
+        swap(array, i, pivotIndex);
+        pivotIndex++;
+      }
+    }
+    swap(array, pivotIndex, end);
+    return pivotIndex;
+  };
+
+  <!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Ordenando</title>
+  <script src="ordenando.js"></script>
+</head>
+<body>
+  <input type="number
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Usuários de Teste via REST</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+</head>
+
+<body class="container bg-warning">
+  <h1>Usuários de Teste via REST</h1>
+
+  <p>Os dados de teste são fornecidos por <a href="https://reqres.in" target="_blank">reqres.in</a> no formato JSON.</p>
+
+  <div id="usuarios" class="container-fluid">
+    <div class="row">
+      <div class="card col-4 p-2 m-3" v-for="(user, index) in users" :key="index">
+        <img :src="user.avatar" class="card-img-top" alt="Imagem do Usuário">
+        <div class="card-body">
+          <h5 class="card-title">{{ user.first_name }} {{ user.last_name }}</h5>
+          <p class="card-text">{{ user.email }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var app = new Vue({
+      el: '#usuarios',
+      data: {
+        users: []
+      },
+      mounted() {
+        this.loadUsers();
+      },
+      methods: {
+        loadUsers() {
+          fetch('https://reqres.in/api/users?per_page=10')
+            .then(response => response.json())
+            .then(data => {
+              this.users = data.data;
+            })
+            .catch(error => {
+              console.error('Erro ao carregar os usuários:', error);
+            });
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
